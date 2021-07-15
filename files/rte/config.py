@@ -13,7 +13,6 @@ class Settings(BaseSettings):
     redis_batch_size: int = 1 # max number of items per batch
     redis_batch_timeout: int = 1 #milliseconds
 
-    #elastic_host: list = [['hq-ref-v-elastic-1', 'hq-ref-v-elastic-2', 'hq-ref-v-elastic-3'],'localhost']
     elastic_host: list = ['localhost', 'elastic-cluster-1']
 
     class Config:
