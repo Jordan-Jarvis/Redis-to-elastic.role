@@ -1,0 +1,15 @@
+[Unit]
+Description=Connects a redis stream to elasticsearch using python
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+
+Restart=on-failure
+RestartSec=5s
+
+ExecStart=/usr/bin/python3.8 /bin/redis_to_elastic/main.py
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,70 @@
+- name: Install python3
+  apt:
+    name: python3.8
+
+- name: Install pip
+  apt:
+    name: python3-pip
+
+- name: Ensure apt-transport-https is installed
+  apt:
+    name: apt-transport-https
+
+- name: Python-pip is up to date
+  pip:
+    name: pip
+    extra_args: --upgrade
+
+- name: Install pydantic
+  shell:
+    cmd: python3.8 -m pip install pydantic
+
+- name: Install aredis
+  shell:
+    cmd: python3.8 -m pip install aredis
+
+- name: Install aioify
+  shell:
+    cmd: python3.8 -m pip install aioify
+
+- name: Install redis-tools
+  shell:
+    cmd: python3.8 -m pip install redis-tools
+
+- name: Install elasticsearch
+  shell:
+    cmd: python3.8 -m pip install elasticsearch
+
+- name: Install redis
+  shell:
+    cmd: python3.8 -m pip install redis
+
+- name: Install aioredis
+  shell:
+    cmd: python3.8 -m pip install redis-tools
+
+- name: Install asyncio
+  shell:
+    cmd: python3.8 -m pip install asyncio
+    
+- name: Copy template files to destination
+  copy:
+    dest: /bin/redis_to_elastic/
+    src: rte/
+    mode: 0755
+    owner: root
+    group: root
+
+- name: Generate service file from template
+  copy:
+    src: rte-exporter.service.j2
+    dest: /etc/systemd/system/redis_to_elastic.service
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Make sure service is enabled
+  service:
+    name: redis_to_elastic
+    state: started
+    enabled: yes

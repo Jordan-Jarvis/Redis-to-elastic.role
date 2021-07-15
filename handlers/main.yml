@@ -1,0 +1,5 @@
+- name: start redis_to_elastic
+  service:
+    name: redis_to_elastic
+    state: restarted
+    enabled: yes

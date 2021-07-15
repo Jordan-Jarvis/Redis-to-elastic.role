@@ -1,0 +1,9 @@
+---
+galaxy_info:
+  author: Jordan Jarvis
+  description: A role to install dependencies for redis to elastic
+  min_ansible_version: 2.4
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
